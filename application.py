@@ -50,7 +50,7 @@ def index():
     result = Recipes.query.all()
 
     # below query is simple filter by, ordered by ID
-    #result = Recipes.query.filter_by(cuisine = "mexican")
+    #result = Recipes.query.filter_by(cuisine = "mexican").order_by(desc(calories))
     return render_template('index.html', result=result)
 
 @application.route("/viewdb")
