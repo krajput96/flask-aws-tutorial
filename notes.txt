@@ -1,0 +1,7 @@
+Things to implement:
+
+
+1. Omnibar that can take input like: "filter by Mexican", "filter by Indian", ...
+2. add one ingredient -- provide recipes which are 1 off
+3. buy ingredients for id:0980 -- link to AMZN and buy ingredients and ship
+  

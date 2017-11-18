@@ -1,30 +1,63 @@
-{% extends "base.html" %} {% import 'macros.html' as macros %} 
+{% extends "base.html" %} {% import 'macros.html' as macros %}
 {% block content %}
 
-<div class="col-md-4 col-md-offset-4">
 
-      <div align="center">
-        <h2>{{num_return}} most recent entries to your AWS RDS:</h2>
-      </div>
+<body>
+  <div class = "container theme-showcase" role = "main">
 
-<hr>
-
-    <table class="table table-striped table-hover">
-  <thead>
-{% for z in results %}
-    <tr>
-      <td>{{z.notes}}</td>
-    </tr>
-{% endfor %}
-  </tbody>
-</table>
+    <table id = "t01">
 
 
-<hr>
+      <tr>
+        <th>ID</th>
+        <th>CUISINE</th>
 
-<div align="center"
-    <p><a href="/"><button type="submit" class="btn btn-primary">Return home</button></p></a>
-</div>
+        <th>ingredient0</th>
+        <th>INGREDIENT0 QUANTITY</th>
+        <th>ingredient1</th>
+        <th>INGREDIENT 1QUANTITY</th>
+        <th>ingredient2</th>
+        <th>INGREDIENT2 QUANTITY</th>
+        <th>ingredient3</th>
+        <th>INGREDIENT 3QUANTITY</th>
+        <th>ingredient4</th>
+        <th>INGREDIENT4 QUANTITY</th>
+        <th>ingredient5</th>
+        <th>INGREDIENT 5QUANTITY</th>
+        <th>ingredient6</th>
+        <th>INGREDIENT6 QUANTITY</th>
+        <th>ingredient7</th>
+        <th>INGREDIENT 7QUANTITY</th>
 
 
-{% endblock %}  
+      </tr>
+
+      {% for r in result %}
+      <tr>
+        <td>  {{r.id}}</td>
+        <td>    {{r.cuisine}}</td>
+        <td>  {{r.ingredient0}}</td>
+        <td>    {{r.ing0quantity}}</td>
+        <td>{{r.ingredient1}}</td>
+        <td>  {{r.ing1quantity}}</td>
+        <td>  {{r.ingredient2}}</td>
+        <td>    {{r.ing2quantity}}</td>
+        <td>{{r.ingredient3}}</td>
+        <td>  {{r.ing3quantity}}</td>
+        <td>  {{r.ingredient4}}</td>
+        <td>    {{r.ing4quantity}}</td>
+        <td>{{r.ingredient5}}</td>
+        <td>  {{r.ing5quantity}}</td>
+        <td>  {{r.ingredient6}}</td>
+        <td>    {{r.ing6quantity}}</td>
+        <td>{{r.ingredient7}}</td>
+        <td>  {{r.ing7quantity}}</td>
+      </tr>
+      {% endfor %}
+
+  </table>
+
+  </div>
+</body>
+
+{% endblock %}

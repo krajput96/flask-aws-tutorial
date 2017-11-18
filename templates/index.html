@@ -30,6 +30,44 @@ table#t01 th {
 <body>
   <div class = "container theme-showcase" role = "main">
 
+    <table id = "t00">
+
+
+      <tr>
+
+        <th>ingredient</th>
+        <th>INGREDIENT QUANTITY</th>
+
+
+      </tr>
+
+      {% for r in result2 %}
+      <tr>
+
+        <td>  {{r.ingredient0}}</td>
+        <td>    {{r.ing0quantity}}</td>
+
+      </tr>
+      {% endfor %}
+
+  </table>
+
+  </div>
+</body>
+
+<form action = "/index" method = "POST" name = "cuisineSelection">
+
+  {{form.hidden_tag()}}
+  <p>
+    {{form.cuisine.label}}
+    {{form.cuisine}}
+    {{form.submit()}}
+  </p>
+</form>
+
+<body>
+  <div class = "container theme-showcase" role = "main">
+
     <table id = "t01">
 
 

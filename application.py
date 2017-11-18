@@ -15,12 +15,18 @@ from application.models import Data
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from collections import Counter
+from application.forms import cuisineForm
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from flask_wtf import Form
 
 # Elastic Beanstalk initalization
 application = Flask(__name__)
 application.debug=True
 # change this to your own value
 application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
+
+
+
 
 class Recipes(db.Model):
 
@@ -44,19 +50,44 @@ class Recipes(db.Model):
     ingredient7 = db.Column(db.String(20))
     ing7quantity = db.Column(db.String(20))
 
+
+
+class Fridge(db.Model):
+    __tablename__ = 'fridge'
+
+    ingredient = db.Column(db.String(20), primary_key = True)
+    quantity = db.Column(db.Integer)
+
+# class Store(db.Model):
+#     __bind_key__ == 'store'
+#     ingredient = db.Column(db.String(20), primary_key = True)
+#     quantity = db.Column(db.Integer)
+
+
 @application.route('/', methods=['GET', 'POST'])
 @application.route('/index', methods=['GET', 'POST'])
 def index():
-    result = Recipes.query.all()
+    allRecipes = Recipes.query.all()
+    fridgeItems = Fridge.query.all()
+
+    mexicanRecipes = Recipes.query.filter_by(cuisine = "mexican")
+
+    cuisine_selection = cuisineForm(request.form)
+
+    if request.method == 'POST' and cuisine_selection.validate_on_submit():
+        target_cuisine = cuisine_selection.cuisine.data
+        print (target_cuisine)
+        print ("Before Query")
+        cuisine_tuples = Recipes.query.filter_by(cuisine = target_cuisine).all()
+        print ("after Query")
+        for b in cuisine_tuples:
+            print(b)
+        return render_template('results.html', result=cuisine_tuples)
 
     # below query is simple filter by, ordered by ID
     #result = Recipes.query.filter_by(cuisine = "mexican").order_by(desc(calories))
-    return render_template('index.html', result=result)
+    return render_template('index.html', result=allRecipes, form = cuisine_selection)
 
-@application.route("/viewdb")
-def viewdb():
-    rows = execute_query("""SELECT * FROM reciesp""")
-    return '<br>'.join(str(row) for row in rows)
 
 
 @application.route('/countme/<input_str>')
@@ -67,10 +98,6 @@ def count_me(input_str):
         response.append('"{}":{}'.format(letter, count))
     return '<br>'.join(response)
 
-application.config['SQLALCHEMY_DATABASE_URI'] =  'mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat/recipes'
-db = SQLAlchemy(application)
-
-
 
 
 # DATABASE = 'mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat'
@@ -79,7 +106,11 @@ db = SQLAlchemy(application)
 #
 # print(engine.table_names())
 
+application.config['SQLALCHEMY_DATABASE_URI'] =  'mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat/recipes'
+# application.config['SQLALCHEMY_BINDS'] =  {'fridge': 'mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat/fridge'}
+#
 
+db = SQLAlchemy(application)
 
 
 if __name__ == '__main__':
