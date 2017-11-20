@@ -91,6 +91,7 @@ table#t01 th {
 </form>
 
 <body>
+  <h2>Recipes We Can Make!</h2>
   <div id = "table-wrapper">
     <div id = "table-scroll">
     <table id = "t01">
@@ -123,7 +124,7 @@ table#t01 th {
 
       </tr>
 
-      {% for r in result %}
+      {% for r in zeroMissing %}
       <tr>
         <td>  {{r.id}}</td>
         <td>    {{r.cuisine}}</td>
@@ -155,6 +156,203 @@ table#t01 th {
   </div>
 </body>
 
+<body>
+  <h2>Recipes We Can Make with 1 new ingredient!</h2>
+  <div id = "table-wrapper">
+    <div id = "table-scroll">
+    <table id = "t01">
+
+
+      <tr>
+        <th>ID</th>
+        <th>CUISINE</th>
+
+        <th>ingredient0</th>
+        <th>INGREDIENT0 QUANTITY</th>
+        <th>ingredient1</th>
+        <th>INGREDIENT 1QUANTITY</th>
+        <th>ingredient2</th>
+        <th>INGREDIENT2 QUANTITY</th>
+        <th>ingredient3</th>
+        <th>INGREDIENT 3QUANTITY</th>
+        <th>ingredient4</th>
+        <th>INGREDIENT4 QUANTITY</th>
+        <th>ingredient5</th>
+        <th>INGREDIENT 5QUANTITY</th>
+        <th>ingredient6</th>
+        <th>INGREDIENT6 QUANTITY</th>
+        <th>ingredient7</th>
+        <th>INGREDIENT 7QUANTITY</th>
+        <th>instructions </th>
+        <th>calories </th>
+        <th>protein </th>
+
+
+      </tr>
+
+      {% for r in oneMissing %}
+      <tr>
+        <td>  {{r.id}}</td>
+        <td>    {{r.cuisine}}</td>
+        <td>  {{r.ingredient0}}</td>
+        <td>    {{r.ing0quantity}}</td>
+        <td>{{r.ingredient1}}</td>
+        <td>  {{r.ing1quantity}}</td>
+        <td>  {{r.ingredient2}}</td>
+        <td>    {{r.ing2quantity}}</td>
+        <td>{{r.ingredient3}}</td>
+        <td>  {{r.ing3quantity}}</td>
+        <td>  {{r.ingredient4}}</td>
+        <td>    {{r.ing4quantity}}</td>
+        <td>{{r.ingredient5}}</td>
+        <td>  {{r.ing5quantity}}</td>
+        <td>  {{r.ingredient6}}</td>
+        <td>    {{r.ing6quantity}}</td>
+        <td>{{r.ingredient7}}</td>
+        <td>  {{r.ing7quantity}}</td>
+        <td>  {{r.instructions}}</td>
+        <td>  {{r.calories}}</td>
+        <td>  {{r.protein}}</td>
+
+      </tr>
+      {% endfor %}
+
+  </table>
+  </div>
+  </div>
+</body>
+
+<body>
+  <h2>Recipes We Can Make with 2 new ingredient!</h2>
+  <div id = "table-wrapper">
+    <div id = "table-scroll">
+    <table id = "t01">
+
+
+      <tr>
+        <th>ID</th>
+        <th>CUISINE</th>
+
+        <th>ingredient0</th>
+        <th>INGREDIENT0 QUANTITY</th>
+        <th>ingredient1</th>
+        <th>INGREDIENT 1QUANTITY</th>
+        <th>ingredient2</th>
+        <th>INGREDIENT2 QUANTITY</th>
+        <th>ingredient3</th>
+        <th>INGREDIENT 3QUANTITY</th>
+        <th>ingredient4</th>
+        <th>INGREDIENT4 QUANTITY</th>
+        <th>ingredient5</th>
+        <th>INGREDIENT 5QUANTITY</th>
+        <th>ingredient6</th>
+        <th>INGREDIENT6 QUANTITY</th>
+        <th>ingredient7</th>
+        <th>INGREDIENT 7QUANTITY</th>
+        <th>instructions </th>
+        <th>calories </th>
+        <th>protein </th>
+
+
+      </tr>
+
+      {% for r in twoMissing %}
+      <tr>
+        <td>  {{r.id}}</td>
+        <td>    {{r.cuisine}}</td>
+        <td>  {{r.ingredient0}}</td>
+        <td>    {{r.ing0quantity}}</td>
+        <td>{{r.ingredient1}}</td>
+        <td>  {{r.ing1quantity}}</td>
+        <td>  {{r.ingredient2}}</td>
+        <td>    {{r.ing2quantity}}</td>
+        <td>{{r.ingredient3}}</td>
+        <td>  {{r.ing3quantity}}</td>
+        <td>  {{r.ingredient4}}</td>
+        <td>    {{r.ing4quantity}}</td>
+        <td>{{r.ingredient5}}</td>
+        <td>  {{r.ing5quantity}}</td>
+        <td>  {{r.ingredient6}}</td>
+        <td>    {{r.ing6quantity}}</td>
+        <td>{{r.ingredient7}}</td>
+        <td>  {{r.ing7quantity}}</td>
+        <td>  {{r.instructions}}</td>
+        <td>  {{r.calories}}</td>
+        <td>  {{r.protein}}</td>
+
+      </tr>
+      {% endfor %}
+
+  </table>
+  </div>
+  </div>
+</body>
+
+<body>
+  <h2>Recipes We Can Make with 3 new ingredient!</h2>
+  <div id = "table-wrapper">
+    <div id = "table-scroll">
+    <table id = "t01">
+
+
+      <tr>
+        <th>ID</th>
+        <th>CUISINE</th>
+
+        <th>ingredient0</th>
+        <th>INGREDIENT0 QUANTITY</th>
+        <th>ingredient1</th>
+        <th>INGREDIENT 1QUANTITY</th>
+        <th>ingredient2</th>
+        <th>INGREDIENT2 QUANTITY</th>
+        <th>ingredient3</th>
+        <th>INGREDIENT 3QUANTITY</th>
+        <th>ingredient4</th>
+        <th>INGREDIENT4 QUANTITY</th>
+        <th>ingredient5</th>
+        <th>INGREDIENT 5QUANTITY</th>
+        <th>ingredient6</th>
+        <th>INGREDIENT6 QUANTITY</th>
+        <th>ingredient7</th>
+        <th>INGREDIENT 7QUANTITY</th>
+        <th>instructions </th>
+        <th>calories </th>
+        <th>protein </th>
+
+
+      </tr>
+
+      {% for r in threeMissing %}
+      <tr>
+        <td>  {{r.id}}</td>
+        <td>    {{r.cuisine}}</td>
+        <td>  {{r.ingredient0}}</td>
+        <td>    {{r.ing0quantity}}</td>
+        <td>{{r.ingredient1}}</td>
+        <td>  {{r.ing1quantity}}</td>
+        <td>  {{r.ingredient2}}</td>
+        <td>    {{r.ing2quantity}}</td>
+        <td>{{r.ingredient3}}</td>
+        <td>  {{r.ing3quantity}}</td>
+        <td>  {{r.ingredient4}}</td>
+        <td>    {{r.ing4quantity}}</td>
+        <td>{{r.ingredient5}}</td>
+        <td>  {{r.ing5quantity}}</td>
+        <td>  {{r.ingredient6}}</td>
+        <td>    {{r.ing6quantity}}</td>
+        <td>{{r.ingredient7}}</td>
+        <td>  {{r.ing7quantity}}</td>
+        <td>  {{r.instructions}}</td>
+        <td>  {{r.calories}}</td>
+        <td>  {{r.protein}}</td>
+
+      </tr>
+      {% endfor %}
+
+  </table>
+  </div>
+  </div>
+</body>
 
 
 

@@ -57,8 +57,8 @@ class Recipes(db.Model):
 class Fridge(db.Model):
     __tablename__ = 'fridge'
 
-    ingredient = db.Column(db.String(20), primary_key = True)
-    quantity = db.Column(db.Integer)
+    Ingredient = db.Column(db.String(20), primary_key = True)
+    Quantity = db.Column(db.Integer)
 
 # class Store(db.Model):
 #     __bind_key__ == 'store'
@@ -70,14 +70,12 @@ class Fridge(db.Model):
 @application.route('/index', methods=['GET', 'POST'])
 def index():
     #allRecipes = Recipes.query.order_by(Recipes.calories.desc())
-    allRecipes = Recipes.query.all()
-    fridgeItems = Fridge.query.all()
+    #allRecipesMinusZero = Recipes.query.all()
 
 
     engine = create_engine('mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat', isolation_level="READ UNCOMMITTED")
     connection1 = engine.connect()
     connection2 = engine.connect()
-    connection3 = engine.connect()
 
 
     r = connection1.execute("select * from recipes")
@@ -85,14 +83,17 @@ def index():
 
     recipes_data = {}
     fridge_list = []
+    fridge_dict = {}
     count_Recipe = {}
 
     for rec in r:
-        my_list = [rec.ingredient0, rec.ingredient1, rec.ingredient2, rec.ingredient3, rec.ingredient4, rec.ingredient5, rec.ingredient6, rec.ingredient7]
+        my_list = [(rec.ingredient0, rec.ing0quantity), (rec.ingredient1, rec.ing1quantity), (rec.ingredient2, rec.ing2quantity), (rec.ingredient3, rec.ing3quantity), (rec.ingredient4, rec.ing4quantity), (rec.ingredient5, rec.ing5quantity), (rec.ingredient6, rec.ing6quantity), (rec.ingredient7, rec.ing7quantity)]
         recipes_data[rec.id] = my_list
 
     for frid in f:
         fridge_list.append(frid[0])
+        fridge_dict[frid[0]] = frid[1]
+
 
     # print (recipes_data.get(1))
     # print (fridge_list)
@@ -102,14 +103,21 @@ def index():
     #         if val in fridge_list:
     #             counter = counter + 1
     #     count_Recipe[x] = counter
+    #
+    # for key, value in recipes_data.items():
+    #     counter = 0
+    #     for val in value:
+    #         if (val[0] in fridge_list) and (val[1] >= fridge_dict[val[0]]) :
+    #             counter = counter + 1
+    #     count_Recipe[key] = counter
+    #
 
     for key, value in recipes_data.items():
         counter = 0
         for val in value:
-            if val in fridge_list:
+            if (val[0] in fridge_list) and (fridge_dict[val[0]] > val[1]):
                 counter = counter + 1
         count_Recipe[key] = counter
-
 
     #print (count_Recipe)
 
@@ -119,13 +127,13 @@ def index():
     threeIngredientMissing = []
 
     for key, value in count_Recipe.items():
-        if value == 0:
+        if value == 8:
             noIngredientMissing.append(key)
-        if value == 1:
+        if value == 7:
             oneIngredientMissing.append(key)
-        if value == 2:
+        if value == 6:
             twoIngredientMissing.append(key)
-        if value == 3:
+        if value == 5:
             threeIngredientMissing.append(key)
 
 
@@ -156,8 +164,19 @@ def index():
     complex_selection = complexForm(request.form)
 
 
-    allRecipes = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).all()
-    [next(s for s in allRecipes if s.id == id) for id in noIngredientMissing]
+    allRecipesMinusZero = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).all()
+    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+
+    allRecipesMinusOne = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).all()
+    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+
+    allRecipesMinusTwo = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).all()
+    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+
+    allRecipesMinusThree = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).all()
+    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
+
+
 
 
     if request.method == 'POST' and complex_selection.validate_on_submit():
@@ -204,7 +223,7 @@ def index():
         target_cuisine = cuisine_selection.cuisine.data
         print (target_cuisine)
         print ("Before Query")
-        cuisine_tuples = Recipes.query.filter_by(cuisine = target_cuisine).all()
+        cuisine_tuples = allRecipesMinusZero.query.filter_by(cuisine = target_cuisine).all()
         print ("after Query")
         # for b in cuisine_tuples:
         #     print(b)
@@ -227,12 +246,15 @@ def index():
 
     # below query is simple filter by, ordered by ID
     #result = Recipes.query.filter_by(cuisine = "mexican").order_by(desc(calories))
-    return render_template('index.html', result=allRecipes, form1 = cuisine_selection, form2 = calories_selection, form3 = complex_selection)
+    return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form1 = cuisine_selection, form2 = calories_selection, form3 = complex_selection)
 
 
 
-@application.route('/countme/<input_str>')
+@application.route('/recipes/<input_str>')
 def count_me(input_str):
+    if (input_str < 0) or (input_str > 10000):
+        return NULL
+
     input_counter = Counter(input_str)
     response = []
     for letter, count in input_counter.most_common():
