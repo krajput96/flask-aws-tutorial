@@ -1,5 +1,5 @@
 from application import db
-from application.models import Data
+from application.models import Recipes, Fridge, Store
 
 db.create_all()
 
