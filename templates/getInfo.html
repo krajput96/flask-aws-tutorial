@@ -1,0 +1,54 @@
+{% extends "base.html" %} {% import 'macros.html' as macros %}
+{% block content %}
+
+
+
+<body>
+
+
+  <h1>Recipe #{{result}}</h1>
+
+          <h2>Contents:</h2>
+
+          <ul>
+              <li>Time: </li>
+              <li>Serves: </li>
+              <li>Recipe: </li>
+          </ul>
+
+
+          <h2>Ingredients:</h2>
+
+          <ul>
+            {% for r in list %}
+              <li>
+                {{r}}
+              </li>
+            {% endfor %}
+          </ul>
+
+
+
+
+
+              </tbody>
+          </table>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
