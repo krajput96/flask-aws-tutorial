@@ -14,7 +14,7 @@ from application import db
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from collections import Counter
-from application.forms import cuisineForm, caloriesForm, complexForm
+from application.forms import complexForm, moreInformation
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from flask_wtf import Form
 #from application.models import Fridge, Store, Recipes
@@ -94,7 +94,6 @@ def index():
         fridge_list.append(frid[0])
         fridge_dict[frid[0]] = frid[1]
 
-
     # print (recipes_data.get(1))
     # print (fridge_list)
     # for x in range(0, 1000):
@@ -157,11 +156,8 @@ def index():
     #             print ('ayee')
 
     #mexicanRecipes = Recipes.query.filter_by(cuisine = "mexican")
-
-    cuisine_selection = cuisineForm(request.form)
-    calories_selection = caloriesForm(request.form)
-
     complex_selection = complexForm(request.form)
+    id_selection = moreInformation(request.form)
 
 
     allRecipesMinusZero = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).all()
@@ -183,70 +179,120 @@ def index():
         target_cuisine = complex_selection.cuisine.data
         target_calories_protein = complex_selection.calories_protein.data
 
-        if cuisine_selection == ' ':
+        if target_cuisine == ' ':
             if target_calories_protein == 'High Protein' or target_calories_protein == 'Low Protein':
                 if target_calories_protein == 'High Protein':
-                    tuples = Recipes.query.order_by(Recipes.protein.desc()).all()
+                    tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).order_by(Recipes.protein.desc()).all()
+                    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                    tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).order_by(Recipes.protein.desc()).all()
+                    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                    tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).order_by(Recipes.protein.desc()).all()
+                    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                    tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).order_by(Recipes.protein.desc()).all()
+                    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
                 else:
-                    tuples = Recipes.query.order_by(Recipes.protein).all()
-            elif  target_calories_protein == 'High Calories' or target_calories_protein == 'Low Calories':
+                    tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).order_by(Recipes.protein).all()
+                    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                    tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).order_by(Recipes.protein).all()
+                    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                    tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).order_by(Recipes.protein).all()
+                    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                    tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).order_by(Recipes.protein).all()
+                    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
+            elif target_calories_protein == 'High Calories' or target_calories_protein == 'Low Calories':
                 if target_calories_protein == 'High Calories':
-                    tuples = Recipes.query.order_by(Recipes.calories.desc()).all()
+                    tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).order_by(Recipes.calories.desc()).all()
+                    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                    tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).order_by(Recipes.calories.desc()).all()
+                    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                    tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).order_by(Recipes.calories.desc()).all()
+                    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                    tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).order_by(Recipes.calories.desc()).all()
+                    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
                 else:
-                    tuples = Recipes.query.order_by(Recipes.calories).all()
+                    tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).order_by(Recipes.calories).all()
+                    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                    tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).order_by(Recipes.calories).all()
+                    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                    tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).order_by(Recipes.calpries).all()
+                    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                    tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).order_by(Recipes.calories).all()
+                    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
             else:
-                tuples = Recipes.query.all()
-
+                tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).all()
+                [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).all()
+                [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).all()
+                [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).all()
+                [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
 
         else:
             if target_calories_protein == 'High Protein' or target_calories_protein == 'Low Protein':
                 if target_calories_protein == 'High Protein':
-                    tuples = Recipes.query.order_by(Recipes.protein.desc()).filter_by(cuisine = target_cuisine).all()
+                    tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.protein.desc()).all()
+                    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                    tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.protein.desc()).all()
+                    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                    tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.protein.desc()).all()
+                    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                    tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.protein.desc()).all()
+                    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
                 else:
-                    tuples = Recipes.query.order_by(Recipes.protein).filter_by(cuisine = target_cuisine).all()
+                    tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.protein).all()
+                    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                    tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.protein).all()
+                    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                    tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.protein).all()
+                    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                    tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.protein).all()
+                    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
             elif  target_calories_protein == 'High Calories' or target_calories_protein == 'Low Calories':
                 if target_calories_protein == 'High Calories':
-                    tuples = Recipes.query.order_by(Recipes.calories.desc()).filter_by(cuisine = target_cuisine).all()
+                    tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.calories.desc()).all()
+                    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                    tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.calories.desc()).all()
+                    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                    tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.calories.desc()).all()
+                    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                    tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.calories.desc()).all()
+                    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
                 else:
-                    tuples = Recipes.query.order_by(Recipes.calories).filter_by(cuisine = target_cuisine).all()
+                    tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.calories).all()
+                    [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                    tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.calories).all()
+                    [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                    tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.calpries).all()
+                    [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                    tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).filter(Recipes.cuisine==target_cuisine).order_by(Recipes.calories).all()
+                    [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
             else:
-                tuples = Recipes.query.all()
-        return render_template('both.html', result = tuples)
+                tuples0 = Recipes.query.filter(Recipes.id.in_(noIngredientMissing)).filter(Recipes.cuisine==target_cuisine).all()
+                [next(s for s in allRecipesMinusZero if s.id == id) for id in noIngredientMissing]
+                tuples1 = Recipes.query.filter(Recipes.id.in_(oneIngredientMissing)).filter(Recipes.cuisine==target_cuisine).all()
+                [next(s for s in allRecipesMinusOne if s.id == id) for id in oneIngredientMissing]
+                tuples2 = Recipes.query.filter(Recipes.id.in_(twoIngredientMissing)).filter(Recipes.cuisine==target_cuisine).all()
+                [next(s for s in allRecipesMinusTwo if s.id == id) for id in twoIngredientMissing]
+                tuples3 = Recipes.query.filter(Recipes.id.in_(threeIngredientMissing)).filter(Recipes.cuisine==target_cuisine).all()
+                [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
+        return render_template('both.html', zeroMissing = tuples0, oneMissing = tuples1, twoMissing = tuples2, threeMissing = tuples3)
+    if request.method == 'POST' and id_selection.validate_on_submit():
+        targetId = id_selection.moreInfo.data
+        print(targetId)
+        myList = []
 
+        print(recipes_data.get(int(targetId)))
+        x=''
+        for val in recipes_data.get(int(targetId)):
+            if val[0]:
+                myList.append(val[0])
 
-
-
-
-
-
-    if request.method == 'POST' and cuisine_selection.validate_on_submit():
-        target_cuisine = cuisine_selection.cuisine.data
-        print (target_cuisine)
-        print ("Before Query")
-        cuisine_tuples = allRecipesMinusZero.query.filter_by(cuisine = target_cuisine).all()
-        print ("after Query")
-        # for b in cuisine_tuples:
-        #     print(b)
-        return render_template('cuisines.html', result=cuisine_tuples)
-
-    if request.method == 'POST' and calories_selection.validate_on_submit():
-        target_calories = calories_selection.calories.data
-        print (target_calories)
-        print ('Before Query')
-        if target_calories == 'High Calories':
-            calories_tuples = Recipes.query.order_by(Recipes.calories.desc())
-        else:
-            calories_tuples = Recipes.query.order_by(Recipes.calories)
-        print ('After Query')
-        # for b in calories_tuples:
-        #     print(b)
-        return render_template('calories.html', result = calories_tuples)
-
-
-
+        print(myList)
+        return render_template('getInfo.html', result = targetId, list = myList)
     # below query is simple filter by, ordered by ID
     #result = Recipes.query.filter_by(cuisine = "mexican").order_by(desc(calories))
-    return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form1 = cuisine_selection, form2 = calories_selection, form3 = complex_selection)
+    return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form3 = complex_selection, form4 = id_selection)
 
 
 
@@ -260,14 +306,6 @@ def count_me(input_str):
     for letter, count in input_counter.most_common():
         response.append('"{}":{}'.format(letter, count))
     return '<br>'.join(response)
-
-
-
-# DATABASE = 'mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat'
-#
-# engine = create_engine(DATABASE)
-#
-# print(engine.table_names())
 
 application.config['SQLALCHEMY_DATABASE_URI'] =  'mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat/recipes'
 # application.config['SQLALCHEMY_BINDS'] =  {'fridge': 'mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat/fridge'}
