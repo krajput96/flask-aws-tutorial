@@ -1,11 +1,12 @@
-{% extends "base.html" %} {% import 'macros.html' as macros %}
+{% extends "bootstrap/base.html" %}
+{% import 'macros.html' as macros %}
 {% block content %}
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
 
 <body>
-
-
+<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
   <h1>Recipe #{{result}}</h1>
 
           <h2>Contents:</h2>
@@ -17,10 +18,10 @@
           </ul>
 
 
-          <h2>Ingredients:</h2>
+          <h2>All Ingredients:</h2>
 
           <ul>
-            {% for r in list %}
+            {% for r in allings %}
               <li>
                 {{r}}
               </li>
@@ -28,7 +29,27 @@
           </ul>
 
 
+          <h2>Missing Ingredients:</h2>
+          <ul>
+            {% for r, value in stores.items() %}
+              <li>
+                 You can get <b>{{r}}</b> from {{value[0]}}. They have {{value[1]}} remaining in stock.
+              </li>
+            {% endfor %}
+          </ul>
 
+
+          <h2>How to get to the stores with the missing ingredients</h2>
+          <ul>
+            {% for key, value in directions.items() %}
+              <h3>{{key}}</h3>
+                {% for values in value %}
+                <li>
+                   <b>{{values}}</b>
+                </li>
+                {% endfor %}
+            {% endfor %}
+          </ul>
 
 
               </tbody>

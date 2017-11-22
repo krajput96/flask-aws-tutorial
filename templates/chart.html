@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+  </head>
+  <body >
+    <h1>Pattern Verification</h1>
+    <b>Calories Verification: </b>This graph shows calorie count for each {{pickedCuisine}} cuisine.<br>
+    **The range of calories is evident through the lowest and highest values of the y-axis. If that range is consistent for the cuisine that you picked, our pattern is verified.**
+    <p>
+      Caloric Patterns:<br>
+1. All food between (200-1000),
+2. British (400-600),
+3. Cajun (700-1000),
+4. Chinese (500-700),
+5. French (400-700),
+6. Mexican, Italian, Indian, Jamaican (500-1000),
+7. Jap (200-400),
+8. Rest (200-500) <br>
+</p>
+    <div class="ct-chart ct-perfect-fourth" padding:0 margin:0 id = ></div>
+    <script>
+    var data = {
+      labels: {{callabels}},
+
+      series: [
+        {{calseries}}
+
+    ]
+  };
+
+var options = {
+  width: 1300,
+  height: 400
+};
+var myChart = new Chartist.Line('.ct-chart', data, options)
+
+
+    </script>
+
+    <b>Protein Verification:</b>This graph shows protein count for each {{pickedCuisine}} cuisine.
+    You can see the range of protein on the y-axis which verifies the pattern.
+    <p>
+      Protein: <br>
+1. All between (5-35),
+2. South US, Mexican, Italian (20-30),
+3. Cajun (20-35),
+4. Special cases: boneless chicken 20, beef 40, milk 18 <br>
+
+    </p>
+    <div class="ct-chart2 ct-perfect-fourth"></div>
+    <script>
+    var data = {
+      labels: {{protlabels}},
+      series: [
+        {{protseries}}
+    ]
+  };
+
+  var options = {
+  width: 1300,
+  height: 400
+  };
+  var myChart2 = new Chartist.Line('.ct-chart2', data, options)
+  </script>
+</body>
+</html>

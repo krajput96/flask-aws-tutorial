@@ -1,7 +1,10 @@
-{% extends "base.html" %} {% import 'macros.html' as macros %}
+{% extends "bootstrap/base.html" %} {% import 'macros.html' as macros %}
 {% block content %}
 
-<div class="col-md-4 col-md-offset-0">
+<link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
+ <link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
+
+<div class="col-md-4 col-md-offset-0" id = topBar>
 
       <div align="center">
         <h2>Whats Can I Make?!?!?!</h2>
@@ -10,8 +13,23 @@
 <hr>
 
 
-<style>
 
+
+<style>
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nobile', Arial;
+}
+p, div {
+    font-family: 'Nobile', Helvetica, Arial, sans-serif;
+}
+#topBar {
+  text-align: center;
+
+  width: 1000px;
+height: 100px;
+padding : 50px
+
+}
 table#t01 tr:nth-child(even) {
     background-color: #eee;
 }
@@ -53,7 +71,7 @@ table#t01 th {
 </style>
 
 <form action = "/index" method = "POST" name = "complex_selection">
-
+<div class="dropdown">
   {{form3.hidden_tag()}}
   <p>
     {{form3.cuisine.label}}
@@ -64,11 +82,11 @@ table#t01 th {
 
     {{form3.submit()}}
   </p>
-
+</div>
 </form>
 
 
-<form action = "/index" method = "POST" name = "complex_selection">
+<form action = "/index" method = "POST" name = "getInfo">
 
   {{form4.hidden_tag()}}
   <p>
@@ -79,11 +97,39 @@ table#t01 th {
 
 </form>
 
+
+<form action = "/index" method = "POST" name = "addRecipe">
+
+    {{form6.hidden_tag()}}
+    <p>
+      {{form6.ing.label}}
+      {{form6.ing}}
+      {{form6.quan.label}}
+      {{form6.quan}}
+      {{form6.submit()}}
+</form>
+
+<form action = "/index" method = "POST" name = "patternVerf">
+
+  {{form5.hidden_tag()}}
+  <p>
+    <b> Use the below query for pattern verification (Patterns are described after you press Submit on a cuisine below) </b>
+    {{form5.cuisine.label}}
+    {{form5.cuisine}}
+    {{form5.submit()}}
+  </p>
+</form>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+<link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
+
 <body>
+<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
   <h2>Recipes We Can Make!</h2>
   <div id = "table-wrapper">
     <div id = "table-scroll">
-    <table id = "t01">
+    <table class = "table table-hover table.fixed" id = "t01">
 
 
       <tr>
@@ -149,7 +195,7 @@ table#t01 th {
   <h2>Recipes We Can Make with 1 new ingredient!</h2>
   <div id = "table-wrapper">
     <div id = "table-scroll">
-    <table id = "t01">
+      <table class = "table table-hover" id = "t01">
 
 
       <tr>
@@ -215,7 +261,7 @@ table#t01 th {
   <h2>Recipes We Can Make with 2 new ingredient!</h2>
   <div id = "table-wrapper">
     <div id = "table-scroll">
-    <table id = "t01">
+      <table class = "table table-hover" table.fixed id = "t01">
 
 
       <tr>
@@ -281,7 +327,7 @@ table#t01 th {
   <h2>Recipes We Can Make with 3 new ingredient!</h2>
   <div id = "table-wrapper">
     <div id = "table-scroll">
-    <table id = "t01">
+      <table class = "table table-hover" id = "t01">
 
 
       <tr>
