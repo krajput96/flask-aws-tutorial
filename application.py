@@ -1,18 +1,19 @@
-# coding=utf-8
+ # coding=utf-8
 
 import sqlite3
-import urllib.request, json
+import json
 from pprint import pprint
 
 from flask import Flask, render_template, request, g, redirect
 from application import db
-from flask_sqlalchemy import SQLAlchemy
+from urllib2 import urlopen
+from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from collections import Counter
 from application.forms import complexForm, moreInformation, patternVerf, addFridge
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from flask_wtf import Form
-from flask_bootstrap import Bootstrap
+from flask.ext.wtf import Form
+from flask.bootstrap import Bootstrap
 #from application.models import Fridge, Store, Recipes
 
 # Elastic Beanstalk initalization
@@ -163,7 +164,7 @@ def index():
     directionQuery = startString + myAddress + middleString
 
     #print(directionQuery)
-    with urllib.request.urlopen(directionQuery+store_location.get('Costco')) as url:
+    with urllib2.urlopen(directionQuery+store_location.get('Costco')) as url:
         data = json.loads(url.read().decode())
         #print(data)
 
@@ -331,12 +332,12 @@ def index():
         return render_template('both.html', zeroMissing = tuples0, oneMissing = tuples1, twoMissing = tuples2, threeMissing = tuples3, form4 = id_selection)
     if request.method == 'POST' and id_selection.validate_on_submit():
         targetId = id_selection.moreInfo.data
-        print(targetId)
+        #print(targetId)
         myList = []
         myMissingList = []
         storesNeeded = {}
 
-        print(recipes_data.get(int(targetId)))
+        #print(recipes_data.get(int(targetId)))
 
         missingIngredients = {}
 
@@ -345,33 +346,33 @@ def index():
         for val in recipes_data.get(int(targetId)):
             if val[0]:
                 myList.append((val[0], val[1]))
-        print(myList)
+        #print(myList)
 
         # print(fridge_dict)
 
         for val in myList:
             if (val[0] not in fridge_list) or (fridge_dict[val[0]] < val[1]):
                 myMissingList.append(val[0])
-        print(myMissingList)
+        #print(myMissingList)
         for val in myMissingList:
             storesNeeded[val] = store_data.get(val)
 
-        print ("here")
-        print (storesNeeded)
-
-        print(myList)
+        # print ("here")
+        # print (storesNeeded)
+        #
+        # print(myList)
 
         locationsNeeded = {}
 
-        print (myMissingList)
+        # print (myMissingList)
 
         for key, val in storesNeeded.items():
             locationsNeeded[val[0]] = []
 
-        print (locationsNeeded)
+        #print (locationsNeeded)
 
         for key, val in locationsNeeded.items():
-            with urllib.request.urlopen(directionQuery+store_location.get(key)) as url:
+            with urllib2.urlopen(directionQuery+store_location.get(key)) as url:
                 data = json.loads(url.read().decode())
                 #print(data)
 
@@ -381,7 +382,7 @@ def index():
                 list.append(i['narrative'])
 
 
-        print (locationsNeeded)
+        #print (locationsNeeded)
 
 
         return render_template('getInfo.html', result = targetId, allings = myList, stores = storesNeeded, directions = locationsNeeded)    # below query is simple filter by, ordered by ID
