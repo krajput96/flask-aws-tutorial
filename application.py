@@ -1,22 +1,23 @@
  # coding=utf-8
 
 import sqlite3
-import json
+import urllib.request, json
 from pprint import pprint
 
 from flask import Flask, render_template, request, g, redirect
 from application import db
-from urllib2 import urlopen
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from collections import Counter
 from application.forms import complexForm, moreInformation, patternVerf, addFridge
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from flask.ext.wtf import Form
+from flask_bootstrap import Bootstrap
 #from application.models import Fridge, Store, Recipes
 
 # Elastic Beanstalk initalization
 application = Flask(__name__)
+Bootstrap(application)
 application.debug=True
 # change this to your own value
 application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
@@ -162,7 +163,7 @@ def index():
     directionQuery = startString + myAddress + middleString
 
     #print(directionQuery)
-    with urllib2.urlopen(directionQuery+store_location.get('Costco')) as url:
+    with urllib.request.urlopen(directionQuery+store_location.get('Costco')) as url:
         data = json.loads(url.read().decode())
         #print(data)
 
@@ -370,7 +371,7 @@ def index():
         #print (locationsNeeded)
 
         for key, val in locationsNeeded.items():
-            with urllib2.urlopen(directionQuery+store_location.get(key)) as url:
+            with urllib.request.urlopen(directionQuery+store_location.get(key)) as url:
                 data = json.loads(url.read().decode())
                 #print(data)
 
