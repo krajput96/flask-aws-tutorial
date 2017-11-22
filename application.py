@@ -13,7 +13,7 @@ from collections import Counter
 from application.forms import complexForm, moreInformation, patternVerf, addFridge
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from flask.ext.wtf import Form
-from flask.bootstrap import Bootstrap
+from flask.ext.bootstrap import Bootstrap
 #from application.models import Fridge, Store, Recipes
 
 # Elastic Beanstalk initalization
