@@ -23,5 +23,5 @@ class patternVerf(Form):
 
 class addFridge(Form):
     ing = StringField(label='Add to Fridge:')
-    quan = IntegerField('Quantity: ', validators = [validators.NumberRange(min=3, max=8)])
+    quan = IntegerField('Quantity: ')
     submit = SubmitField('Submit')

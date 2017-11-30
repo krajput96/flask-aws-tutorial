@@ -4,7 +4,7 @@ import sqlite3
 import urllib.request, json
 from pprint import pprint
 
-from flask import Flask, render_template, request, g, redirect
+from flask import Flask, render_template, request, g, redirect, flash, session
 from application import db
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
@@ -17,6 +17,7 @@ from flask.ext.wtf import Form
 
 # Elastic Beanstalk initalization
 application = Flask(__name__)
+application.secret_key = "bahhah"
 #Bootstrap(application)
 application.debug=True
 # change this to your own value
@@ -74,7 +75,6 @@ selectedCuisine = ''
 def index():
     #allRecipes = Recipes.query.order_by(Recipes.calories.desc())
     #allRecipesMinusZero = Recipes.query.all()
-
 
     engine = create_engine('mysql+pymysql://krajput96:cs336proj@whatshouldieat.c8rryuxgrrfa.us-east-1.rds.amazonaws.com:3306/whatshouldieat', isolation_level="READ UNCOMMITTED")
     connection1 = engine.connect()
@@ -169,8 +169,8 @@ def index():
 
     #print(data['route']['legs'][0]['maneuvers'][0]['narrative'])
 
-    for i in data['route']['legs'][0]['maneuvers']:
-        print (i['narrative'])
+    # for i in data['route']['legs'][0]['maneuvers']:
+    #     print (i['narrative'])
 
     #send to phone
 
@@ -216,14 +216,23 @@ def index():
     if request.method == 'POST' and add_fridge.validate_on_submit():
         addIng = add_fridge.ing.data
         theQuan = add_fridge.quan.data
+        print(theQuan)
         data_entered = [(addIng, theQuan)]
-        try:
-            db.add(data_entered)
-            db.commit()
-            db.session.close()
-            print('success')
-        except:
-            return render_template("thanks.html", ingredient = addIng, quantity = theQuan)
+        if theQuan > 8 or theQuan < 3:
+            flash('The input you entered does not satisfy our constraints! Try again')
+            print('fuck this')
+            return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form3 = complex_selection, form4 = id_selection, form5 = pattern_verf, form6=add_fridge)
+        else:
+            try:
+                db.add(data_entered)
+                db.commit()
+                db.session.close()
+                print('success')
+            except:
+                output = 'Successfully Added! You added: '+str(addIng)+" with quantity: "+str(theQuan)+" to the fridge!!"
+                flash(output)
+                print('fuck this')
+                return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form3 = complex_selection, form4 = id_selection, form5 = pattern_verf, form6=add_fridge)
 
 
 
@@ -433,3 +442,5 @@ db = SQLAlchemy(application)
 
 if __name__ == '__main__':
     application.run(host='0.0.0.0')
+
+    #

@@ -1,6 +1,7 @@
 {% extends "base.html" %} {% import 'macros.html' as macros %}
 {% block content %}
 
+
 <link href="http://fonts.googleapis.com/css?family=Corben:bold" rel="stylesheet" type="text/css">
  <link href="http://fonts.googleapis.com/css?family=Nobile" rel="stylesheet" type="text/css">
 
@@ -73,7 +74,7 @@ table#t01 th {
 
 <form action = "/index" method = "POST" name = "complex_selection">
 <div class="dropdown">
-  <h4 style="color:red;"> If you would like to filter by Cuisine or Protein/Calories or both, select from drop down! </h4>
+  <h4 style="color:purple;"> If you would like to filter by Cuisine or Protein/Calories or both, select from drop down and hit Submit! We will redirect you to another page!</h4>
   {{form3.hidden_tag()}}
   <p>
     {{form3.cuisine.label}}
@@ -91,8 +92,16 @@ table#t01 th {
 
 
 <form action = "/index" method = "POST" name = "addRecipe">
-  <h4 style="color:red;"> Add a new ingredient to your Fridge! Since we have constraints if we do not accept your input, nothing will happen ;)  </h4>
+  <h4 style="color:purple;"> Add a new ingredient to your Fridge! Since we have constraints if we do not accept your input, nothing will happen ;)  </h4>
+  <h4 style="color:purple;"> Enter a Food you want to add to your fridge, followed by a quantity (3, 4, 5, ...) This quantity depends on the item, for example "Orange: 3" means 3 oranges! </h4>
 
+  {% with messages = get_flashed_messages() %}
+     {% if messages %}
+          {% for message in messages %}
+           <h2 style = 'color:red;'>{{ message }}</h2>
+          {% endfor %}
+    {% endif %}
+   {% endwith %}
     {{form6.hidden_tag()}}
     <p>
       {{form6.ing.label}}
@@ -103,7 +112,7 @@ table#t01 th {
 </form>
 
 <form action = "/index" method = "POST" name = "patternVerf">
-<h4 style="color:red;"> If you would like to verify the pattern in our data, select any cuisine and see the pattern! </h4>
+<h4 style="color:purple;"> If you would like to verify the pattern in our data, select any cuisine and see the pattern! </h4>
   {{form5.hidden_tag()}}
   <p>
     {{form5.cuisine.label}}
@@ -115,8 +124,12 @@ table#t01 th {
 
 
 <form action = "/index" method = "POST" name = "getInfo">
-<h4 style="color:red;"> Once you found a recipe you like, copy and paste its ID (the first column) into this searh bar! We will give you info on how to make it and where to buy missing ingredients! </h4>
-  {{form4.hidden_tag()}}
+<h4 style="color:purple;"> Once you found a recipe you like, copy and paste its ID (the first column) into this search bar! We will give you info on how to make it and where to buy missing ingredients!</h4>
+<h4 style="color:purple;">  We are working on making the Recipes clickable, so stay tuned! :)
+</h4>
+
+
+{{form4.hidden_tag()}}
   <p>
     {{form4.moreInfo.label}}
     {{form4.moreInfo}}
@@ -130,9 +143,11 @@ table#t01 th {
 
 <body>
 <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-<h4 style="color:blue;"> Below you can instantly see what recipes you can make!</h4>
+<h2 style="color:blue;"> Below you can instantly see what recipes you can make!</h2>
+<h4 style="color:blue;"> As we allow more missing ingredients, you can get more options! If you want to filter particular cuisines, or want to see your recipes ordered by Protein or Caloric count, please use the filter bar on the top!
+</h4>
   <h2>Recipes We Can Make!</h2>
-  <h4 style="color:green;"> These are recipes which you have all the ingredients to make already in your fridge! Select the ID for any recipe you are interested in and paste it in the Search By ID to get more information! </h4>
+  <h4 style="color:green; width:100%"> These are recipes which you have all the ingredients to make already in your fridge! Select the ID for any recipe you are interested in and paste it in the Search By ID to get more information! </h4>
 
   <div id = "table-wrapper">
     <div id = "table-scroll">
