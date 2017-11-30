@@ -94,6 +94,8 @@ table#t01 th {
 <form action = "/index" method = "POST" name = "addRecipe">
   <h4 style="color:purple;"> Add a new ingredient to your Fridge! Since we have constraints if we do not accept your input, nothing will happen ;)  </h4>
   <h4 style="color:purple;"> Enter a Food you want to add to your fridge, followed by a quantity (3, 4, 5, ...) This quantity depends on the item, for example "Orange: 3" means 3 oranges! </h4>
+  <h4 style="color:purple;"> We don't want you to add too little of an ingredient since it will just go to waste, or too much since space is limited! The sweet spot in our fridge is a quantity between 3 & 7!  </h4>
+
 
   {% with messages = get_flashed_messages() %}
      {% if messages %}
