@@ -22,7 +22,7 @@ application.debug=True
 # change this to your own value
 application.secret_key = 'cC1YCIWOj9GgWspgNEo2'
 
-
+db.init_app(application)
 
 
 class Recipes(db.Model):

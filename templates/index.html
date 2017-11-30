@@ -7,7 +7,7 @@
 <div class="col-md-4 col-md-offset-0" id = topBar>
 
       <div align="center">
-        <h2>What's for dinner?</h2>
+        <h1 style="color:blue">What's for dinner?</h1>
       </div>
 
 <hr>
@@ -16,12 +16,13 @@
 
 
 <style>
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Nobile', Arial;
-}
+
 p, div {
     font-family: 'Nobile', Helvetica, Arial, sans-serif;
 }
+
+h4  {color: red;}
+
 #topBar {
   text-align: center;
 
@@ -72,6 +73,7 @@ table#t01 th {
 
 <form action = "/index" method = "POST" name = "complex_selection">
 <div class="dropdown">
+  <h4 style="color:red;"> If you would like to filter by Cuisine or Protein/Calories or both, select from drop down! </h4>
   {{form3.hidden_tag()}}
   <p>
     {{form3.cuisine.label}}
@@ -86,19 +88,10 @@ table#t01 th {
 </form>
 
 
-<form action = "/index" method = "POST" name = "getInfo">
-
-  {{form4.hidden_tag()}}
-  <p>
-    {{form4.moreInfo.label}}
-    {{form4.moreInfo}}
-    {{form4.submit()}}
-  </p>
-
-</form>
 
 
 <form action = "/index" method = "POST" name = "addRecipe">
+  <h4 style="color:red;"> Add a new ingredient to your Fridge! Since we have constraints if we do not accept your input, nothing will happen ;)  </h4>
 
     {{form6.hidden_tag()}}
     <p>
@@ -110,14 +103,26 @@ table#t01 th {
 </form>
 
 <form action = "/index" method = "POST" name = "patternVerf">
-
+<h4 style="color:red;"> If you would like to verify the pattern in our data, select any cuisine and see the pattern! </h4>
   {{form5.hidden_tag()}}
   <p>
-    <b> Use the below query for pattern verification (Patterns are described after you press Submit on a cuisine below) </b>
     {{form5.cuisine.label}}
     {{form5.cuisine}}
     {{form5.submit()}}
   </p>
+</form>
+
+
+
+<form action = "/index" method = "POST" name = "getInfo">
+<h4 style="color:red;"> Once you found a recipe you like, copy and paste its ID (the first column) into this searh bar! We will give you info on how to make it and where to buy missing ingredients! </h4>
+  {{form4.hidden_tag()}}
+  <p>
+    {{form4.moreInfo.label}}
+    {{form4.moreInfo}}
+    {{form4.submit()}}
+  </p>
+
 </form>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
@@ -125,8 +130,10 @@ table#t01 th {
 
 <body>
 <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-
+<h4 style="color:blue;"> Below you can instantly see what recipes you can make!</h4>
   <h2>Recipes We Can Make!</h2>
+  <h4 style="color:green;"> These are recipes which you have all the ingredients to make already in your fridge! Select the ID for any recipe you are interested in and paste it in the Search By ID to get more information! </h4>
+
   <div id = "table-wrapper">
     <div id = "table-scroll">
     <table class = "table table-hover table.fixed" id = "t01">
@@ -193,6 +200,8 @@ table#t01 th {
 
 <body>
   <h2>Recipes We Can Make with 1 new ingredient!</h2>
+  <h4 style="color:green;"> These are recipes which you need just one more ingredient to make! Select the ID for any recipe you are interested in and paste it in the Search By ID to get more information!</h4>
+
   <div id = "table-wrapper">
     <div id = "table-scroll">
       <table class = "table table-hover" id = "t01">
@@ -259,6 +268,8 @@ table#t01 th {
 
 <body>
   <h2>Recipes We Can Make with 2 new ingredient!</h2>
+  <h4 style="color:green;"> These are recipes which you need just two more ingredients to make! Select the ID for any recipe you are interested in and paste it in the Search By ID to get more information!</h4>
+
   <div id = "table-wrapper">
     <div id = "table-scroll">
       <table class = "table table-hover" table.fixed id = "t01">
@@ -325,6 +336,8 @@ table#t01 th {
 
 <body>
   <h2>Recipes We Can Make with 3 new ingredient!</h2>
+  <h4 style="color:green;"> These are recipes which you need just three more ingredients to make! Select the ID for any recipe you are interested in and paste it in the Search By ID to get more information!</h4>
+
   <div id = "table-wrapper">
     <div id = "table-scroll">
       <table class = "table table-hover" id = "t01">
