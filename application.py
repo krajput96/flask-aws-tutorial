@@ -218,7 +218,7 @@ def index():
         theQuan = add_fridge.quan.data
         print(theQuan)
         data_entered = [(addIng, theQuan)]
-        if theQuan > 8 or theQuan < 3:
+        if int(theQuan or 0) > 8 or int(theQuan or 0) < 3:
             flash('The input you entered does not satisfy our constraints! Try again')
             print('fuck this')
             return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form3 = complex_selection, form4 = id_selection, form5 = pattern_verf, form6=add_fridge)
@@ -239,7 +239,7 @@ def index():
     if request.method == 'POST' and complex_selection.validate_on_submit():
         target_cuisine = complex_selection.cuisine.data
         target_calories_protein = complex_selection.calories_protein.data
-
+        print('hello')
         if target_cuisine == ' ':
             if target_calories_protein == 'High Protein' or target_calories_protein == 'Low Protein':
                 if target_calories_protein == 'High Protein':
@@ -441,6 +441,6 @@ db = SQLAlchemy(application)
 
 
 if __name__ == '__main__':
-    application.run(host='0.0.0.0')
+    application.run()
 
-    #
+    #host='0.0.0.0'
