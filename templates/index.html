@@ -8,7 +8,7 @@
 <div class="col-md-4 col-md-offset-0" id = topBar>
 
       <div align="center">
-        <h1 style="color:blue">What's for dinner?</h1>
+        <h1 style="color:black">What's for dinner?</h1>
       </div>
 
 <hr>
@@ -74,7 +74,7 @@ table#t01 th {
 
 <form action = "/index" method = "POST" name = "complex_selection">
 <div class="dropdown">
-  <h4 style="color:purple;"> If you would like to filter by Cuisine or Protein/Calories or both, select from drop down and hit Submit! We will redirect you to another page!</h4>
+  <h3 style="color:blue;">  If you would like to filter by Cuisine or sort by Protein/Calories or both, select from drop down and hit Submit! We will redirect you to another page!</h3>
   {{form3.hidden_tag()}}
   <p>
     {{form3.cuisine.label}}
@@ -92,7 +92,7 @@ table#t01 th {
 
 
 <form action = "/index" method = "POST" name = "addRecipe">
-  <h4 style="color:purple;"> Add a new ingredient to your Fridge! Since we have constraints if we do not accept your input, nothing will happen ;)  </h4>
+  <h3 style="color:blue;">  Add a new ingredient to your Fridge! Since we have constraints if we do not accept your input, nothing will happen ;)  </h3>
   <h4 style="color:purple;"> Enter a Food you want to add to your fridge, followed by a quantity (3, 4, 5, ...) This quantity depends on the item, for example "Orange: 3" means 3 oranges! </h4>
   <h4 style="color:purple;"> We don't want you to add too little of an ingredient since it will just go to waste, or too much since space is limited! The sweet spot in our fridge is a quantity between 3 & 7!  </h4>
 
@@ -114,7 +114,7 @@ table#t01 th {
 </form>
 
 <form action = "/index" method = "POST" name = "patternVerf">
-<h4 style="color:purple;"> If you would like to verify the pattern in our data, select any cuisine and see the pattern! </h4>
+<h3 style="color:blue;">  If you would like to verify the pattern in our data, select any cuisine and see the pattern! </h3>
   {{form5.hidden_tag()}}
   <p>
     {{form5.cuisine.label}}
@@ -126,7 +126,7 @@ table#t01 th {
 
 
 <form action = "/index" method = "POST" name = "getInfo">
-<h4 style="color:purple;"> Once you found a recipe you like, copy and paste its ID (the first column) into this search bar! We will give you info on how to make it and where to buy missing ingredients!</h4>
+<h3 style="color:blue;"> Once you found a recipe you like, copy and paste its ID (the first column) into this search bar! We will give you info on how to make it and where to buy missing ingredients!</h3>
 <h4 style="color:purple;">  We are working on making the Recipes clickable, so stay tuned! :)
 </h4>
 
@@ -146,7 +146,7 @@ table#t01 th {
 <body>
 <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 <h2 style="color:blue;"> Below you can instantly see what recipes you can make!</h2>
-<h4 style="color:blue;"> As we allow more missing ingredients, you can get more options! If you want to filter particular cuisines, or want to see your recipes ordered by Protein or Caloric count, please use the filter bar on the top!
+<h4 style="color:purple;"> As we allow more missing ingredients, you can get more options! If you want to filter particular cuisines, or want to see your recipes ordered by Protein or Caloric count, please use the filter bar on the top!
 </h4>
   <h2>Recipes We Can Make!</h2>
   <h4 style="color:green; width:100%"> These are recipes which you have all the ingredients to make already in your fridge! Select the ID for any recipe you are interested in and paste it in the Search By ID to get more information! </h4>

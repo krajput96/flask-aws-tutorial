@@ -8,8 +8,8 @@ CALORIES_PROTEIN_CHOICES = [(' ',' '), ('High Protein', 'High Protein'), ('Low P
 PATTERNS = [('Mexican', 'Mexican') , ('Italian', 'Italian'), ('Indian', 'Indian'), ('French', 'French'), ('Thai', 'Thai'), ('Russian', 'Russian'), ('Spanish', 'Spanish'), ('Japanese', 'Japanese'), ('British', 'British'), ('Korean', 'Korean'), ]
 
 class complexForm(Form):
-    cuisine = SelectField(label='Cuisine: ', choices=CUISINE_CHOICES)
-    calories_protein = SelectField(label='Choose: ', choices=CALORIES_PROTEIN_CHOICES)
+    cuisine = SelectField(label='Filter by Cuisine: ', choices=CUISINE_CHOICES)
+    calories_protein = SelectField(label='Sort By: ', choices=CALORIES_PROTEIN_CHOICES)
 
     submit = SubmitField("Submit")
 

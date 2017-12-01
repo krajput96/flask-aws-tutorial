@@ -399,25 +399,68 @@ def index():
     #     return render_template('pattern.html', mexicanData = mexicanCaloriesList)    # below query is simple filter by, ordered by ID
 
     if request.method == 'POST' and pattern_verf.validate_on_submit():
-        calDict = {}
-        calLabel = []
-        calSeries = []
-        protDict = {}
-        protLabel = []
-        protSeries = []
+        count0100 = 0
+        count101200 = 0
+        count201300 = 0
+        count301400 = 0
+        count401500 = 0
+        count501600 = 0
+        count601700 = 0
+        count701800 = 0
+        count801900 = 0
+        count9011000 = 0
+        p05 = 0
+        p610 = 0
+        p1115 = 0
+        p1620 = 0
+        p2125 = 0
+        p2630 = 0
+        p3135 = 0
+        p3640 = 0
         selectedCuisine = pattern_verf.cuisine.data
         alldata = Recipes.query.filter(Recipes.cuisine == selectedCuisine)
         for tuples in alldata:
-            calDict[tuples.id] = [tuples.calories]
+            if(tuples.calories<=100):
+                count0100+=1
+            elif(tuples.calories>100 and tuples.calories<=200):
+                count101200+=1
+            elif(tuples.calories>200 and tuples.calories<=300):
+                count201300+=1
+            elif(tuples.calories>300 and tuples.calories<=400):
+                count301400+=1
+            elif(tuples.calories>400 and tuples.calories<=500):
+                count401500+=1
+            elif(tuples.calories>500 and tuples.calories<=600):
+                count501600+=1
+            elif(tuples.calories>600 and tuples.calories<=700):
+                count601700+=1
+            elif(tuples.calories>700 and tuples.calories<=800):
+                count701800+=1
+            elif(tuples.calories>800 and tuples.calories<=900):
+                count801900+=1
+            else:
+                count9011000+=1
         for tuples in alldata:
-            protDict[tuples.id] = [tuples.protein]
-        for id, value in calDict.items():
-            calLabel.append(id)
-            calSeries.append(value[0])
-        for id, value in protDict.items():
-            protLabel.append(id)
-            protSeries.append(value[0])
-        return render_template('chart.html', pickedCuisine = selectedCuisine, callabels = calLabel, calseries = calSeries, protlabels = protLabel, protseries = protSeries)
+            if(tuples.protein<=5):
+                p05+=1
+            elif(tuples.protein>5 and tuples.protein<=10):
+                p610+=1
+            elif(tuples.protein>10 and tuples.protein<=15):
+                p1115+=1
+            elif(tuples.protein>15 and tuples.protein<=20):
+                p1620+=1
+            elif(tuples.protein>20 and tuples.protein<=25):
+                p2125+=1
+            elif(tuples.protein>25 and tuples.protein<=30):
+                p2630+=1
+            elif(tuples.protein>30 and tuples.protein<=35):
+                p3135+=1
+            else:
+                p3640+=1
+        return render_template('chart.html', pickedCuisine = selectedCuisine, cal0100 = count0100, cal101200 = count101200, cal201300 = count201300,
+    cal301400 = count301400, cal401500 = count401500, cal501600 = count501600, cal601700 = count601700,
+    cal701800 = count701800, cal801900 = count801900, cal9011000 = count9011000, prot05 = p05, prot610 = p610,
+    prot1115 = p1115, prot1620 = p1620, prot2125 = p2125, prot2630 = p2630, prot3135 = p3135, prot3640 = p3640)
     return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form3 = complex_selection, form4 = id_selection, form5 = pattern_verf, form6=add_fridge)
 
 
@@ -441,6 +484,6 @@ db = SQLAlchemy(application)
 
 
 if __name__ == '__main__':
-    application.run()
+    application.run(host='0.0.0.0')
 
     #host='0.0.0.0'
