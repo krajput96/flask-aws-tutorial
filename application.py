@@ -220,7 +220,6 @@ def index():
         data_entered = [(addIng, theQuan)]
         if int(theQuan or 0) > 8 or int(theQuan or 0) < 3:
             flash('The input you entered does not satisfy our constraints! Try again')
-            print('fuck this')
             return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form3 = complex_selection, form4 = id_selection, form5 = pattern_verf, form6=add_fridge)
         else:
             try:
