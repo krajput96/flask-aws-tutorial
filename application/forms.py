@@ -15,7 +15,7 @@ class complexForm(Form):
 
 class moreInformation(Form):
     moreInfo = IntegerField('Search By ID', validators = [validators.NumberRange(min=1, max=11866)])
-    zipCode = SelectField('Enter your ZipCode', choices=TOWNS)
+    zipCode = SelectField('Enter your City', choices=TOWNS)
     submit = SubmitField('Submit')
 
 class patternVerf(Form):
