@@ -129,14 +129,17 @@ table#t01 th {
 
 <form action = "/index" method = "POST" name = "getInfo">
 <h3 style="color:blue;"> Once you found a recipe you like, copy and paste its ID (the first column) into this search bar! We will give you info on how to make it and where to buy missing ingredients!</h3>
-<h4 style="color:purple;">  We are working on making the Recipes clickable, so stay tuned! :)
-</h4>
+<h4 style="color:purple;">  We are working on making the Recipes clickable, so stay tuned! :)</h4>
+<h4>For example search ID: 1234 city: Edison,NJ</h4>
+<h4>If this recipe needs any ingredients we don't have in our fridge, we will auto load the closes store that has the missing ingredients! So select which city you are in!</h4>
 
 
 {{form4.hidden_tag()}}
   <p>
     {{form4.moreInfo.label}}
     {{form4.moreInfo}}
+    {{form4.zipCode.label}}
+    {{form4.zipCode}}
     {{form4.submit()}}
   </p>
 

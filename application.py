@@ -162,7 +162,7 @@ def index():
 
     directionQuery = startString + myAddress + middleString
 
-    #print(directionQuery)
+    print(directionQuery)
     with urllib.request.urlopen(directionQuery+store_location.get('Costco')) as url:
         data = json.loads(url.read().decode())
         #print(data)
@@ -231,7 +231,6 @@ def index():
             except:
                 output = 'Successfully Added! You added: '+str(addIng)+" with quantity: "+str(theQuan)+" to the fridge!!"
                 flash(output)
-                print('fuck this')
                 return render_template('index.html',zeroMissing = allRecipesMinusZero, oneMissing=allRecipesMinusOne, twoMissing = allRecipesMinusTwo, threeMissing = allRecipesMinusThree, form3 = complex_selection, form4 = id_selection, form5 = pattern_verf, form6=add_fridge)
 
 
@@ -339,7 +338,18 @@ def index():
                 [next(s for s in allRecipesMinusThree if s.id == id) for id in threeIngredientMissing]
         return render_template('both.html', zeroMissing = tuples0, oneMissing = tuples1, twoMissing = tuples2, threeMissing = tuples3, form4 = id_selection)
     if request.method == 'POST' and id_selection.validate_on_submit():
+        print ('hello')
+
         targetId = id_selection.moreInfo.data
+        targetZip = id_selection.zipCode.data
+
+        startString = "http://www.mapquestapi.com/directions/v2/route?key=Gb2lkXAUokk1OaZJt1a7jSik8RIAfGu5&from="
+        middleString = "&to="
+
+        directionQuery = startString + str(targetZip) + middleString
+
+        print (directionQuery)
+
         #print(targetId)
         myList = []
         myMissingList = []
