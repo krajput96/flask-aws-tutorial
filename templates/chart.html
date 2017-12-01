@@ -23,10 +23,13 @@
 6. Mexican, Italian, Indian, Jamaican (500-1000),
 7. Jap (200-400),
 8. Rest (200-500) </h4>
+
+<h3 style="color:green;">As you can see below, all our caloric data for recipes which are {{pickedCuisine}} are between 500 and 1000 (inclusive) this is illustrated by the frequency bar chart showing how many recipes per segment!</h3>
+<h3 style="color: orange">Scroll down to see the pattern in Protein counts for {{pickedCuisine}} recipes!</h3>
     <div class="ct-chart ct-golden-section" id="caloriesbar"></div>
     <script>
     var data = {
-      labels: ['0-100','101-200','201-300','301-400','401-500','501-600','601-700','701-800','801-900','>900'],
+      labels: ['0-100','101-200','201-300','301-400','401-500','501-600','601-700','701-800','801-900','900-1000'],
       series:[[{{cal0100}}, {{cal101200}}, {{cal201300}}, {{cal301400}}, {{cal401500}}, {{cal501600}}, {{cal601700}}, {{cal701800}}, {{cal801900}}, {{cal9011000}}]
     ]
   };
@@ -38,19 +41,22 @@
   </script>
 
 
-    <b>Protein Verification: </b>This graph shows how many recipes fall in the protein range for each of the {{pickedCuisine}} recipes that exist in the database.<br>
-    <p>
-      Protein: <br>
+
+  <h2>Protein Verification: </h2>
+
+  <h3>This graph shows how many recipes fall in the protein range for each of the {{pickedCuisine}} recipes that exist in the database.</h3>
+  <h4 style="color:blue;">
 1. All between (5-35),
 2. South US, Mexican, Italian (20-30),
 3. Cajun (20-35),
-4. Special cases: boneless chicken 20, beef 40, milk 18 <br>
+4. Special cases: boneless chicken 20, beef 40, milk 18 <h4>
+<h3 style="color:green;">As you can see below, all our protein data for recipes which are {{pickedCuisine}} are between 20 and 30 grams (inclusive) this is illustrated by the frequency bar chart showing how many recipes per segment!</h3>
 
     </p>
     <div class="ct-chart ct-golden-section" id="proteinsbar"></div>
     <script>
     var data = {
-      labels: ['0-5','6-10','11-15','16-20','21-25','26-30','31-35','36-40'],
+      labels: ['0-5','6-10','11-15','16-19','20-25','26-30','31-35','36-40'],
       series:[[{{prot05}}, {{prot610}}, {{prot1115}}, {{prot1620}}, {{prot2125}}, {{prot2630}}, {{prot3135}}, {{prot3640}}]
     ]
   };

@@ -447,9 +447,9 @@ def index():
                 p610+=1
             elif(tuples.protein>10 and tuples.protein<=15):
                 p1115+=1
-            elif(tuples.protein>15 and tuples.protein<=20):
+            elif(tuples.protein>15 and tuples.protein<=19):
                 p1620+=1
-            elif(tuples.protein>20 and tuples.protein<=25):
+            elif(tuples.protein>=20 and tuples.protein<=25):
                 p2125+=1
             elif(tuples.protein>25 and tuples.protein<=30):
                 p2630+=1

@@ -71,7 +71,6 @@ table#t01 th {
 }
 
 </style>
-
 <form action = "/index" method = "POST" name = "complex_selection">
 <div class="dropdown">
   <h3 style="color:blue;">  If you would like to filter by Cuisine or sort by Protein/Calories or both, select from drop down and hit Submit! We will redirect you to another page!</h3>
@@ -88,6 +87,7 @@ table#t01 th {
 </div>
 </form>
 
+<hr />
 
 
 
@@ -113,6 +113,8 @@ table#t01 th {
       {{form6.submit()}}
 </form>
 
+<hr />
+
 <form action = "/index" method = "POST" name = "patternVerf">
 <h3 style="color:blue;">  If you would like to verify the pattern in our data, select any cuisine and see the pattern! </h3>
   {{form5.hidden_tag()}}
@@ -123,7 +125,7 @@ table#t01 th {
   </p>
 </form>
 
-
+<hr />
 
 <form action = "/index" method = "POST" name = "getInfo">
 <h3 style="color:blue;"> Once you found a recipe you like, copy and paste its ID (the first column) into this search bar! We will give you info on how to make it and where to buy missing ingredients!</h3>
@@ -142,13 +144,13 @@ table#t01 th {
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
 <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.0.0-beta.4/dist/css/bootstrap-material-design.min.css" integrity="sha384-R80DC0KVBO4GSTw+wZ5x2zn2pu4POSErBkf8/fSFhPXHxvHJydT0CSgAP2Yo2r4I" crossorigin="anonymous">
-
+<hr />
 <body>
 <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
-<h2 style="color:blue;"> Below you can instantly see what recipes you can make!</h2>
+<h1 style="color:black;"> Below you can instantly see what recipes you can make!</h1>
 <h4 style="color:purple;"> As we allow more missing ingredients, you can get more options! If you want to filter particular cuisines, or want to see your recipes ordered by Protein or Caloric count, please use the filter bar on the top!
 </h4>
-  <h2>Recipes We Can Make!</h2>
+  <h2>Recipes we can make with only whats in the Fridge!</h2>
   <h4 style="color:green; width:100%"> These are recipes which you have all the ingredients to make already in your fridge! Select the ID for any recipe you are interested in and paste it in the Search By ID to get more information! </h4>
 
   <div id = "table-wrapper">
