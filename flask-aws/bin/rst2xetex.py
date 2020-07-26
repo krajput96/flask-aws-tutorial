@@ -1,4 +1,4 @@
-#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-master/flask-aws-tutorial-master/flask-aws/bin/python
+#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-main/flask-aws-tutorial-main/flask-aws/bin/python
 
 # $Id: rst2xetex.py 7847 2015-03-17 17:30:47Z milde $
 # Author: Guenter Milde

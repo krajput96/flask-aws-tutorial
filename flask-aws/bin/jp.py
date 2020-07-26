@@ -1,4 +1,4 @@
-#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-master/flask-aws-tutorial-master/flask-aws/bin/python
+#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-main/flask-aws-tutorial-main/flask-aws/bin/python
 
 import sys
 import json

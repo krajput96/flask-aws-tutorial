@@ -1,4 +1,4 @@
-#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-master/flask-aws-tutorial-master/flask-aws/bin/python
+#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-main/flask-aws-tutorial-main/flask-aws/bin/python
 
 # $Id: rst2odt.py 5839 2009-01-07 19:09:28Z dkuhlman $
 # Author: Dave Kuhlman <dkuhlman@rexx.com>
