@@ -1,4 +1,4 @@
-#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-master/flask-aws-tutorial-master/flask-aws/bin/python
+#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-main/flask-aws-tutorial-main/flask-aws/bin/python
 # -*- coding: utf8 -*-
 # :Copyright: © 2015 Günter Milde.
 # :License: Released under the terms of the `2-Clause BSD license`_, in short:

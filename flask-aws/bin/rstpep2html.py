@@ -1,4 +1,4 @@
-#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-master/flask-aws-tutorial-master/flask-aws/bin/python
+#!/mnt/c/Users/Karan Rajput/Documents/flask-aws-tutorial-main/flask-aws-tutorial-main/flask-aws/bin/python
 
 # $Id: rstpep2html.py 4564 2006-05-21 20:44:42Z wiemann $
 # Author: David Goodger <goodger@python.org>
